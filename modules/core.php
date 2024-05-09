@@ -40,9 +40,35 @@ function fx_emit($content)
   $fx_buffer[] = $content;
 }
 
+function fx_send($command)
+{
+  global $fx_commands;
+  $fx_commands[] = $command;
+}
+
+function fx_push_state()
+{
+  fx_send(['type' => 'push_state']);
+}
+
+function fx_pop_state()
+{
+  fx_send(['type' => 'pop_state']);
+}
+
+function fx_focus($target, $id = null, $tag = null)
+{
+  fx_send([
+    'type' => 'focus',
+    'target' => $target,
+    'id' => $id,
+    'tag' => $tag
+  ]);
+}
+
 function _fx_shutdown()
 {
-  global $fx_state, $fx_event, $fx_buffer;
+  global $fx_state, $fx_event, $fx_commands, $fx_buffer;
   if (!is_callable('fx_main')) {
     return;
   }
@@ -56,6 +82,7 @@ function _fx_shutdown()
     $fx_event = $null_event;
     $fx_state = new stdClass;
   }
+  $fx_commands = [];
   $fx_buffer = [];
   fx_main();
   $fx_event = $null_event;
@@ -65,6 +92,7 @@ function _fx_shutdown()
     echo json_encode([
       'state' => $fx_state,
       'body' => implode('', $fx_buffer),
+      'commands' => $fx_commands
     ]);
   } else {
     require __DIR__ . '/../templates/index.php';

@@ -157,6 +157,7 @@ function fx_data_grid_s(array $columns, array $rows)
     $state->is_add = true;
     $state->edit_index = -1;
     $state->row = (object) $row;
+    fx_focus($tbody_target, $columns[0]);
   }
   if (
     fx_event()->type == 'change'
@@ -196,6 +197,7 @@ function fx_data_grid_s(array $columns, array $rows)
         $state->is_add = false;
         $state->edit_index = intval(fx_event()->tag);
         $state->row = clone $paged_rows[$state->edit_index];
+        fx_focus($tbody_target, $columns[0]);
         break;
       case 'remove':
         $source_index = array_search($paged_rows[intval(fx_event()->tag)], $rows);

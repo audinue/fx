@@ -1,0 +1,15 @@
+<button id="btn">Button</button>
+
+<script>
+  addEventListener("DOMContentLoaded", function () {
+    console.log("DOMContentLoaded");
+  });
+
+  onpopstate = function (e) {
+    console.log("popstate", e.state);
+  };
+
+  btn.onclick = function () {
+    history.pushState("new state", 0);
+  };
+</script>

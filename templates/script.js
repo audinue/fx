@@ -61,15 +61,66 @@ addEventListener("input", function (e) {
   }
 });
 
+addEventListener("popstate", function (e) {
+  if (e.state) {
+    fx_render(e.state);
+  }
+});
+
 function fx_json(response) {
   return response.json();
 }
 
 function fx_render(json) {
+  var current = {
+    state: fx_state,
+    body: document.body.innerHTML,
+    commands: [],
+  };
   fx_state = json.state;
   var next = document.body.cloneNode();
   next.innerHTML = json.body;
   fx_patch(document.body, next);
+  json.commands.forEach(function (command) {
+    switch (command.type) {
+      case "push_state":
+        history.replaceState(current, 0);
+        history.pushState(
+          {
+            state: json.state,
+            body: json.body,
+            commands: [],
+          },
+          0
+        );
+        break;
+      case "pop_state":
+        history.back();
+        break;
+      case "focus":
+        var target = document.querySelector(
+          '[data-target="' + command.target + '"]'
+        );
+        if (target) {
+          if (command.id) {
+            var id = target.querySelector('[data-id="' + command.id + '"]');
+            if (id) {
+              if (command.tag) {
+                var tag = id.querySelector('[data-tag="' + command.tag + '"]');
+                if (tag) {
+                  tag.focus();
+                }
+              } else {
+                id.focus();
+              }
+            }
+          } else {
+            target.focus();
+          }
+        }
+        break;
+    }
+  });
 }
 
 function fx_patch(curr, next) {

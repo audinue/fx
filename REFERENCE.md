@@ -408,11 +408,13 @@ if (fx_state('show_dialog')) {
   fx_text('Dialog content here.');
   if (fx_button('Close Dialog')) {
     fx_set_state('show_dialog', false);
+    fx_pop_state();
   }
   fx_end_dialog();
 }
 if (fx_button('Show Dialog')) {
   fx_set_state('show_dialog', true);
+  fx_push_state();
 }
 ```
 
@@ -476,6 +478,8 @@ if (fx_button('Show Offcanvas')) {
 
 ### Text List
 
+- `fx_text_list(string $name, $items): ?string`
+
 ```php
 $selected = fx_text_list('fruits', ['Apple', 'Banana', 'Cherry']);
 if ($selected) {
@@ -518,3 +522,10 @@ if (fx_event()->type == 'change' && fx_event()->target == 'My Text Box') {
 ```php
 fx_emit('Hello world!');
 ```
+
+### Commands
+
+- `fx_send(array $command): void`
+- `fx_push_state(): void`
+- `fx_pop_state(): void`
+- `fx_focus(string $target, string $id, string $tag): void`
