@@ -1,5 +1,10 @@
 <?php
 
-foreach (glob(__DIR__ . '/modules/*.php') as $file) {
-  require $file;
+$files = new RecursiveDirectoryIterator(__DIR__ . '/modules');
+$files = new RecursiveIteratorIterator($files);
+
+foreach ($files as $file) {
+  if (is_file($file)) {
+    require $file;
+  }
 }
