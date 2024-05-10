@@ -24,6 +24,10 @@ fx_event_source.onmessage = function (e) {
   }
 };
 
+addEventListener("beforeunload", function (e) {
+  fx_event_source.close();
+});
+
 addEventListener("submit", function (e) {
   e.preventDefault();
 });

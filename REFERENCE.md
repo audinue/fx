@@ -459,7 +459,7 @@ fx_dump($fruits);
 
 ### List View
 
-- `fx_list_view(string $name, $items): ?object`
+- `fx_list_view(string $name, array $items): ?object`
 
 ```php
 $selected = fx_list_view('fruits', [
@@ -472,49 +472,23 @@ if ($selected) {
 }
 fx_text('Selected:');
 fx_dump(fx_state('selected'));
-fx_same_line();
 ```
 
+### Grid View
+
+- `fx_grid_view(string $name, array $items): ?object`
+
 ```php
-$selected = fx_list_view('fruits', [
-  (object) ['title' => 'Apple', 'subtitle' => 'A red fruit'],
-  (object) ['title' => 'Banana', 'subtitle' => 'A yellow fruit'],
-  (object) ['title' => 'Cherry', 'subtitle' => 'Another red fruit'],
+$selected = fx_grid_view('fruits', [
+  (object) ['image' => 'apple.jpg', 'title' => 'Apple', 'subtitle' => 'A red fruit'],
+  (object) ['image' => 'banana.jpg', 'title' => 'Banana', 'subtitle' => 'A yellow fruit'],
+  (object) ['image' => 'cherry.jpg', 'title' => 'Cherry', 'subtitle' => 'Another red fruit'],
 ]);
 if ($selected) {
   fx_set_state('selected', $selected);
 }
 fx_text('Selected:');
 fx_dump(fx_state('selected'));
-fx_same_line();
-```
-
-```php
-$selected = fx_list_view('fruits', [
-  (object) ['image' => 'apple.jpg', 'title' => 'Apple',],
-  (object) ['image' => 'banana.jpg', 'title' => 'Banana'],
-  (object) ['image' => 'cherry.jpg', 'title' => 'Cherry'],
-]);
-if ($selected) {
-  fx_set_state('selected', $selected);
-}
-fx_text('Selected:');
-fx_dump(fx_state('selected'));
-fx_same_line();
-```
-
-```php
-$selected = fx_list_view('fruits', [
-  (object) ['title' => 'Apple'],
-  (object) ['title' => 'Banana'],
-  (object) ['title' => 'Cherry'],
-]);
-if ($selected) {
-  fx_set_state('selected', $selected);
-}
-fx_text('Selected:');
-fx_dump(fx_state('selected'));
-fx_same_line();
 ```
 
 ## Low Level

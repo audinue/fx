@@ -29,7 +29,7 @@ textarea {
 
 pre {
   padding: 1em;
-  background: #eee;
+  background: #f7f7f7;
   overflow: auto;
   margin: 0;
 }
@@ -260,7 +260,7 @@ fieldset {
 .fx-list-view {
   display: flex;
   flex-direction: column;
-  gap: 0.25em;
+  gap: 1em;
 }
 
 .fx-list-view button {
@@ -305,4 +305,21 @@ fieldset {
 
 .fx-list-view button * {
   pointer-events: none;
+}
+
+.fx-list-view-grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.fx-list-view-grid button img {
+  width: 144px;
+  height: 144px;
+}
+
+.fx-list-view-grid button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  min-width: 144px;
 }

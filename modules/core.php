@@ -103,7 +103,7 @@ function _fx_snapshot()
 {
   $snapshot = [];
   if (getcwd() == realpath(__DIR__ . '/../examples')) {
-    $files = __DIR__;
+    $files = __DIR__ . '/../';
   } else {
     $files = getcwd();
   }
@@ -122,12 +122,20 @@ if (isset($_GET['_fx_live_reload'])) {
   ob_end_flush();
   header('Content-Type: text/event-stream');
   $curr = _fx_snapshot();
-  while (!connection_aborted()) {
+  while (true) {
     $next = _fx_snapshot();
     if ($curr != $next) {
       $curr = $next;
       echo "data: reload\n\n";
-      flush();
+    } else {
+      echo "data: \n\n";
+    }
+    if (ob_get_level() > 0) {
+      ob_flush();
+    }
+    flush();
+    if (connection_aborted()) {
+      break;
     }
     sleep(1);
   }
