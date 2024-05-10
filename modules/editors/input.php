@@ -109,7 +109,7 @@ function fx_color_s($label, $value)
   return fx_input_s('color', $label, $value);
 }
 
-function fx_color($label, $initial_value = '')
+function fx_color($label, $initial_value = '#000000')
 {
   return fx_input('color', $label, $initial_value);
 }

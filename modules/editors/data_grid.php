@@ -60,6 +60,7 @@ function fx_data_grid_s(array $columns, array $rows)
   $html .= '<br>';
   $html .= '<input data-id="search" type="search" value="' . htmlspecialchars($state->search) . '">';
   $html .= '</header>';
+  $html .= '<div class="fx-table-container">';
   $html .= '<table>';
   $html .= '<thead data-target="' . htmlspecialchars($thead_target) . '">';
   $html .= '<tr>';
@@ -134,6 +135,7 @@ function fx_data_grid_s(array $columns, array $rows)
   }
   $html .= '</tbody>';
   $html .= '</table>';
+  $html .= '</div>';
   $html .= '<footer data-target="' . htmlspecialchars($footer_target) . '">';
   $html .= '<div>' . $row_count . ' rows</div>';
   $html .= '<br>';

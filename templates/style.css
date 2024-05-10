@@ -82,9 +82,14 @@ form {
   gap: 1em;
 }
 
+.fx-table-container {
+  overflow: auto;
+}
+
 table {
   border-collapse: collapse;
   border: 2px solid;
+  white-space: nowrap;
 }
 
 tbody tr:nth-child(odd) {

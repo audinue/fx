@@ -1,5 +1,29 @@
 var fx_state = JSON.parse(document.getElementById("fx-state").innerHTML);
 
+var fx_event_source = new EventSource("?_fx_live_reload");
+
+fx_event_source.onmessage = function (e) {
+  if (e.data === "reload") {
+    var body = new FormData();
+    body.append(
+      "meta",
+      JSON.stringify({
+        event: {
+          type: null,
+          target: null,
+        },
+        state: fx_state,
+      })
+    );
+    fetch(location.href, {
+      method: "post",
+      body: body,
+    })
+      .then(fx_json)
+      .then(fx_render);
+  }
+};
+
 addEventListener("submit", function (e) {
   e.preventDefault();
 });
