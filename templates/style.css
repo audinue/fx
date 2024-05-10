@@ -256,3 +256,53 @@ fieldset {
   display: flex;
   gap: 0.25em;
 }
+
+.fx-list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.fx-list-view button {
+  appearance: none;
+  border: none;
+  padding: 0;
+  background: none;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  text-align: left;
+  cursor: pointer;
+  align-self: stretch;
+  gap: 0 0.25em;
+  align-items: center;
+}
+
+.fx-list-view button:has(.fx-list-view-subtitle) button {
+  grid-template-rows: auto 1fr;
+}
+
+.fx-list-view button:has(.fx-list-view-subtitle) img {
+  grid-row: 1 / span 2;
+}
+
+.fx-list-view img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.fx-list-view button:has(.fx-list-view-subtitle) .fx-list-view-title {
+  font-weight: bold;
+}
+
+.fx-list-view button:not(:has(img)) .fx-list-view-subtitle {
+  grid-column: 1;
+}
+
+.fx-list-view-subtitle {
+  font-size: 0.75em;
+}
+
+.fx-list-view button * {
+  pointer-events: none;
+}

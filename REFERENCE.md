@@ -457,35 +457,64 @@ $fruits = fx_data_grid(
 fx_dump($fruits);
 ```
 
-### Offcanvas
+### List View
 
-- `fx_begin_offcanvas()`
-- `fx_end_offcanvas()`
-
-```php
-if (fx_state('show_offcanvas')) {
-  fx_begin_offcanvas();
-  fx_text('Offcanvas content here.');
-  if (fx_button('Close Offcanvas')) {
-    fx_set_state('show_offcanvas', false);
-  }
-  fx_end_offcanvas();
-}
-if (fx_button('Show Offcanvas')) {
-  fx_set_state('show_offcanvas', true);
-}
-```
-
-### Text List
-
-- `fx_text_list(string $name, $items): ?string`
+- `fx_list_view(string $name, $items): ?object`
 
 ```php
-$selected = fx_text_list('fruits', ['Apple', 'Banana', 'Cherry']);
+$selected = fx_list_view('fruits', [
+  (object) ['image' => 'apple.jpg', 'title' => 'Apple', 'subtitle' => 'A red fruit'],
+  (object) ['image' => 'banana.jpg', 'title' => 'Banana', 'subtitle' => 'A yellow fruit'],
+  (object) ['image' => 'cherry.jpg', 'title' => 'Cherry', 'subtitle' => 'Another red fruit'],
+]);
 if ($selected) {
   fx_set_state('selected', $selected);
 }
-fx_text('Selected: ' . fx_state('selected'));
+fx_text('Selected:');
+fx_dump(fx_state('selected'));
+fx_same_line();
+```
+
+```php
+$selected = fx_list_view('fruits', [
+  (object) ['title' => 'Apple', 'subtitle' => 'A red fruit'],
+  (object) ['title' => 'Banana', 'subtitle' => 'A yellow fruit'],
+  (object) ['title' => 'Cherry', 'subtitle' => 'Another red fruit'],
+]);
+if ($selected) {
+  fx_set_state('selected', $selected);
+}
+fx_text('Selected:');
+fx_dump(fx_state('selected'));
+fx_same_line();
+```
+
+```php
+$selected = fx_list_view('fruits', [
+  (object) ['image' => 'apple.jpg', 'title' => 'Apple',],
+  (object) ['image' => 'banana.jpg', 'title' => 'Banana'],
+  (object) ['image' => 'cherry.jpg', 'title' => 'Cherry'],
+]);
+if ($selected) {
+  fx_set_state('selected', $selected);
+}
+fx_text('Selected:');
+fx_dump(fx_state('selected'));
+fx_same_line();
+```
+
+```php
+$selected = fx_list_view('fruits', [
+  (object) ['title' => 'Apple'],
+  (object) ['title' => 'Banana'],
+  (object) ['title' => 'Cherry'],
+]);
+if ($selected) {
+  fx_set_state('selected', $selected);
+}
+fx_text('Selected:');
+fx_dump(fx_state('selected'));
+fx_same_line();
 ```
 
 ## Low Level
