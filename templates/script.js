@@ -166,6 +166,10 @@ function fx_patch(curr, next) {
     return;
   }
   if (curr.nodeType === 1) {
+    if (curr.nodeName === "IFRAME" && curr.src !== next.src) {
+      curr.parentNode.replaceChild(next, curr);
+      return;
+    }
     for (var i = 0; i < next.attributes.length; i++) {
       var attr = next.attributes[i];
       if (curr.getAttribute(attr.name) !== attr.value) {

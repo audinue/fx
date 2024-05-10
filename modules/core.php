@@ -1,24 +1,24 @@
 <?php
 
-function fx_get_state($key)
+function fx_get_state(string $key): mixed
 {
   global $fx_state;
   return $fx_state->$key;
 }
 
-function fx_set_state($key, $value)
+function fx_set_state(string $key, mixed $value): mixed
 {
   global $fx_state;
   return $fx_state->$key = $value;
 }
 
-function fx_no_state($key)
+function fx_no_state(string $key): bool
 {
   global $fx_state;
   return !isset($fx_state->$key);
 }
 
-function fx_state($key, $default_value = null)
+function fx_state(string $key, mixed $default_value = null): mixed
 {
   global $fx_state;
   if (isset($fx_state->$key)) {
@@ -34,13 +34,13 @@ function fx_event()
   return $fx_event;
 }
 
-function fx_emit($content)
+function fx_emit(mixed $content): void
 {
   global $fx_buffer;
   $fx_buffer[] = $content;
 }
 
-function fx_send($command)
+function fx_send(array $command): void
 {
   global $fx_commands;
   $fx_commands[] = $command;
@@ -56,7 +56,7 @@ function fx_pop_state()
   fx_send(['type' => 'pop_state']);
 }
 
-function fx_focus($target, $id = null, $tag = null)
+function fx_focus(string $target, ?string $id = null, ?string $tag = null): void
 {
   fx_send([
     'type' => 'focus',

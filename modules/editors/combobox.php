@@ -1,6 +1,6 @@
 <?php
 
-function fx_combobox_s($label, $options, $selected)
+function fx_combobox_s(string $label, array $options, string $selected): string
 {
   $label_html = htmlspecialchars($label);
   $html = '<label>';
@@ -20,7 +20,7 @@ function fx_combobox_s($label, $options, $selected)
   }
 }
 
-function fx_combobox($label, $options, $initial_selected = '')
+function fx_combobox(string $label, array $options, $initial_selected = ''): string
 {
   return fx_set_state(
     $label,

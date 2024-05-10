@@ -491,6 +491,14 @@ fx_text('Selected:');
 fx_dump(fx_state('selected'));
 ```
 
+### Frame
+
+- `fx_frame(string $url): void`
+
+```php
+fx_frame('hello_world.html');
+```
+
 ## Low Level
 
 ### Event

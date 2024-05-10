@@ -1,6 +1,6 @@
 <?php
 
-function fx_checkbox_s($label, $checked)
+function fx_checkbox_s(string $label, bool $checked): bool
 {
   $label_html = htmlspecialchars($label);
   fx_emit('<label><input type="checkbox" data-target="' . $label_html . '"' . ($checked ? ' checked' : '') . '>' . $label_html . '</label>');
@@ -11,7 +11,7 @@ function fx_checkbox_s($label, $checked)
   }
 }
 
-function fx_checkbox($label, $initial_checked = false)
+function fx_checkbox(string $label, bool $initial_checked = false): bool
 {
   return fx_set_state(
     $label,

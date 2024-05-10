@@ -1,6 +1,6 @@
 <?php
 
-function fx_button_group($buttons)
+function fx_button_group(array $buttons): ?string
 {
   $target = 'button_group_' . implode('_', $buttons);
   $target_html = htmlspecialchars($target);

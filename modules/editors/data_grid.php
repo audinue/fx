@@ -20,7 +20,7 @@ function _fx_data_grid_reset_edit($state)
   $state->row = null;
 }
 
-function fx_data_grid_s(array $columns, array $rows)
+function fx_data_grid_s(array $columns, array $rows): array
 {
   $target = 'data_grid_' . implode('_', $columns);
   if (fx_no_state($target)) {
@@ -253,7 +253,7 @@ function fx_data_grid_s(array $columns, array $rows)
   return $rows;
 }
 
-function fx_data_grid(array $columns, array $initial_rows = [])
+function fx_data_grid(array $columns, array $initial_rows = []): array
 {
   $target = 'data_grid_' . implode('_', $columns);
   if (fx_no_state($target)) {

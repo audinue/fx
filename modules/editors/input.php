@@ -1,6 +1,6 @@
 <?php
 
-function fx_input_s($type, $label, $value)
+function _fx_input_s(string $type, string $label, string $value): string
 {
   $label_html = htmlspecialchars($label);
   $value_html = htmlspecialchars($value);
@@ -12,11 +12,11 @@ function fx_input_s($type, $label, $value)
   }
 }
 
-function fx_input($type, $label, $initial_value)
+function _fx_input(string $type, string $label, string $initial_value): string
 {
   return fx_set_state(
     $label,
-    fx_input_s(
+    _fx_input_s(
       $type,
       $label,
       fx_state($label, $initial_value)
@@ -24,92 +24,92 @@ function fx_input($type, $label, $initial_value)
   );
 }
 
-function fx_textbox_s($label, $value)
+function fx_textbox_s(string $label, string $value): string
 {
-  return fx_input_s('text', $label, $value);
+  return _fx_input_s('text', $label, $value);
 }
 
-function fx_textbox($label, $initial_value = '')
+function fx_textbox(string $label, $initial_value = ''): string
 {
-  return fx_input('text', $label, $initial_value);
+  return _fx_input('text', $label, $initial_value);
 }
 
-function fx_password_s($label, $value)
+function fx_password_s(string $label, string $value): string
 {
-  return fx_input_s('password', $label, $value);
+  return _fx_input_s('password', $label, $value);
 }
 
-function fx_password($label, $initial_value = '')
+function fx_password(string $label, string $initial_value = ''): string
 {
-  return fx_input('password', $label, $initial_value);
+  return _fx_input('password', $label, $initial_value);
 }
 
-function fx_number_s($label, $value)
+function fx_number_s(string $label, int $value): int
 {
-  return intval(fx_input_s('number', $label, $value));
+  return intval(_fx_input_s('number', $label, $value));
 }
 
-function fx_number($label, $initial_value = '')
+function fx_number(string $label, int $initial_value = 0): int
 {
-  return intval(fx_input('number', $label, $initial_value));
+  return intval(_fx_input('number', $label, $initial_value));
 }
 
-function fx_date_s($label, $value)
+function fx_date_s(string $label, string $value): string
 {
-  return fx_input_s('date', $label, $value);
+  return _fx_input_s('date', $label, $value);
 }
 
-function fx_date($label, $initial_value = '')
+function fx_date(string $label, string $initial_value = ''): string
 {
-  return fx_input('date', $label, $initial_value);
+  return _fx_input('date', $label, $initial_value);
 }
 
-function fx_time_s($label, $value)
+function fx_time_s(string $label, string $value): string
 {
-  return fx_input_s('time', $label, $value);
+  return _fx_input_s('time', $label, $value);
 }
 
-function fx_time($label, $initial_value = '')
+function fx_time(string $label, string $initial_value = ''): string
 {
-  return fx_input('time', $label, $initial_value);
+  return _fx_input('time', $label, $initial_value);
 }
 
-function fx_datetime_s($label, $value)
+function fx_datetime_s(string $label, string $value): string
 {
-  return fx_input_s('datetime-local', $label, $value);
+  return _fx_input_s('datetime-local', $label, $value);
 }
 
-function fx_datetime($label, $initial_value = '')
+function fx_datetime(string $label, string $initial_value = ''): string
 {
-  return fx_input('datetime-local', $label, $initial_value);
+  return _fx_input('datetime-local', $label, $initial_value);
 }
 
-function fx_week_s($label, $value)
+function fx_week_s(string $label, string $value): string
 {
-  return fx_input_s('week', $label, $value);
+  return _fx_input_s('week', $label, $value);
 }
 
-function fx_week($label, $initial_value = '')
+function fx_week(string $label, string $initial_value = ''): string
 {
-  return fx_input('week', $label, $initial_value);
+  return _fx_input('week', $label, $initial_value);
 }
 
-function fx_month_s($label, $value)
+function fx_month_s(string $label, string $value): string
 {
-  return fx_input_s('month', $label, $value);
+  return _fx_input_s('month', $label, $value);
 }
 
-function fx_month($label, $initial_value = '')
+function fx_month(string $label, string $initial_value = ''): string
 {
-  return fx_input('month', $label, $initial_value);
+  return _fx_input('month', $label, $initial_value);
 }
 
-function fx_color_s($label, $value)
+function fx_color_s(string $label, string $value): string
 {
-  return fx_input_s('color', $label, $value);
+  return _fx_input_s('color', $label, $value);
 }
 
-function fx_color($label, $initial_value = '#000000')
+function fx_color(string $label, string $initial_value = '#000000'): string
 {
-  return fx_input('color', $label, $initial_value);
+  return _fx_input('color', $label, $initial_value);
 }

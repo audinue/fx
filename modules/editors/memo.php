@@ -1,6 +1,6 @@
 <?php
 
-function fx_memo_s($label, $value)
+function fx_memo_s(string $label, string $value): string
 {
   $label_html = htmlspecialchars($label);
   $value_html = htmlspecialchars($value);
@@ -12,7 +12,7 @@ function fx_memo_s($label, $value)
   }
 }
 
-function fx_memo($label, $initial_value = '')
+function fx_memo(string $label, string $initial_value = ''): string
 {
   return fx_set_state(
     $label,
